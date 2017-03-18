@@ -1,12 +1,10 @@
 package hu.aronszabo.ulyssys.parking.service.mappers;
 
-import hu.aronszabo.ulyssys.parking.data.dto.ParkingDTO;
 import hu.aronszabo.ulyssys.parking.data.dto.ParkingPlaceDTO;
 import hu.aronszabo.ulyssys.parking.service.api.vo.ParkingPlaceVO;
-import hu.aronszabo.ulyssys.parking.service.api.vo.ParkingVO;
 import org.dozer.DozerBeanMapper;
 
-public class ParkingPlaceMapper {
+public final class ParkingPlaceMapper {
 
     private static DozerBeanMapper mapper = new DozerBeanMapper();
 

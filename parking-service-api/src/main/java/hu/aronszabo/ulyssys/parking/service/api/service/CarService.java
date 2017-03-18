@@ -4,9 +4,9 @@ import hu.aronszabo.ulyssys.parking.service.api.vo.CarVO;
 
 public interface CarService {
 
-    public CarVO getByLicensePlateNumber(String licensePlateNumber);
+    CarVO getByLicensePlateNumber(String licensePlateNumber);
 
-    public void save(CarVO carVO);
+    void save(CarVO carVO);
 
-    public void remove(Long id);
+    void remove(Long id);
 }

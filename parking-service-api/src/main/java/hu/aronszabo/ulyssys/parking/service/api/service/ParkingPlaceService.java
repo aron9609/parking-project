@@ -4,9 +4,9 @@ import hu.aronszabo.ulyssys.parking.service.api.vo.ParkingPlaceVO;
 
 public interface ParkingPlaceService {
 
-    public ParkingPlaceVO getById(final Long id);
+    ParkingPlaceVO getById(Long id);
 
-    public void save(ParkingPlaceVO parkingPlaceVO);
+    void save(ParkingPlaceVO parkingPlaceVO);
 
-    public void remove(Long id);
+    void remove(Long id);
 }

@@ -49,7 +49,7 @@
                         <webModule>
                             <groupId>hu.aronszabo.ulyssys</groupId>
                             <artifactId>parking-web</artifactId>
-                            <contextRoot>helpdesk</contextRoot>
+                            <contextRoot>parking</contextRoot>
                         </webModule>
                     </modules>
                 </configuration>

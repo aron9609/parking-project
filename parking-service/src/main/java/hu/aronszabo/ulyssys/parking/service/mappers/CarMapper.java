@@ -4,7 +4,7 @@ import hu.aronszabo.ulyssys.parking.data.dto.CarDTO;
 import hu.aronszabo.ulyssys.parking.service.api.vo.CarVO;
 import org.dozer.DozerBeanMapper;
 
-public class CarMapper {
+public final class CarMapper {
 
     private static DozerBeanMapper mapper = new DozerBeanMapper();
 
