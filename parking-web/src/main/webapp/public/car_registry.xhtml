@@ -40,5 +40,25 @@
         </p:dataTable>
     </h:body>
 
+    <p:commandButton value="Add new Car" type="button" onclick="PF('modal').show();" />
+
+    <p:dialog header="New Car" widgetVar="modal" modal="true" height="600" width="400" resizable="false">
+        <h:form>
+            <h:panelGrid columns="2" cellpadding="5">
+                <p:outputLabel for="brand" value="Brand:" />
+                <p:inputText id="brand" value="" required="true"/>
+
+                <p:outputLabel for="type" value="Type:" />
+                <p:inputText id="type" value="" required="true"/>
+
+                <p:outputLabel for="color" value="Color:" />
+                <p:inputText id="color" value="" required="true"/>
+
+                <p:outputLabel for="licensePlateNumber" value="License Plate Number:" />
+                <p:inputText id="licensePlateNumber" value="" required="true"/>
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
+
 </html>
 
