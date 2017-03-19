@@ -39,9 +39,9 @@ public class CarRepository {
         DATA.add(carDTO);
     }
 
-    public void remove(final Long id) {
+    public void remove(final String licensePlateNumber) {
         for (CarDTO tmp : DATA) {
-            if (tmp.getLicensePlateNumber().equals(id)) {
+            if (tmp.getLicensePlateNumber().equals(licensePlateNumber)) {
                 DATA.remove(tmp);
                 break;
             }

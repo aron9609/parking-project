@@ -11,6 +11,6 @@ public interface CarService {
 
     void save(CarVO carVO);
 
-    void remove(Long id);
+    void remove(String licensePlateNumber);
 
 }

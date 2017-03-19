@@ -26,8 +26,8 @@ public class CarBean implements CarService {
     }
 
     @Override
-    public void remove(final Long id) {
-        REPOSITORY.remove(id);
+    public void remove(final String licensePlateNumber) {
+        REPOSITORY.remove(licensePlateNumber);
     }
 
     @Override

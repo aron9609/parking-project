@@ -20,7 +20,16 @@ public class CarRegistryView {
     @EJB
     private CarService carService;
 
+    private CarVO selected;
+
     public Collection<CarVO> getCars() {
         return carService.getAll();
+    }
+
+    public void deleteSelected() {
+        if (selected != null) {
+            carService.remove(selected.getLicensePlateNumber());
+        }
+        selected = null;
     }
 }
