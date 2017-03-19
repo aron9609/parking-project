@@ -4,7 +4,9 @@ import hu.aronszabo.ulyssys.parking.data.dto.CarDTO;
 import java.util.LinkedList;
 import java.util.List;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @NoArgsConstructor
 public class CarRepository {
 
@@ -12,6 +14,14 @@ public class CarRepository {
 
     static {
         DATA = new LinkedList<>();
+        DATA.add(new CarDTO("KVE-228", "Suzuki", "Swift", "white"));
+        DATA.add(new CarDTO("KVE-229", "Opel", "Astra", "red"));
+        DATA.add(new CarDTO("KVE-229", "Kia", "Rio", "black"));
+        log.debug(DATA.toString());
+    }
+
+    public List<CarDTO> getAll() {
+        return DATA;
     }
 
     public CarDTO getByLicensePlateNumber(final String licensePlateNumber) {

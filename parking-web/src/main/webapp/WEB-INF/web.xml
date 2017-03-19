@@ -27,7 +27,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>public/index.xhtml</welcome-file>
+        <welcome-file>public/car_registry.xhtml</welcome-file>
     </welcome-file-list>
 
 </web-app>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+
+    <h:head>
+
+
+        <title>Car Registry</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <ui:insert name="customHead"/>
+
+    </h:head>
+
+    <h:body>
+        <p:dataTable var="car" value="#{carRegistryView.cars}">
+            <p:column headerText="Brand">
+                <h:outputText value="#{car.brand}" />
+            </p:column>
+
+            <p:column headerText="Type">
+                <h:outputText value="#{car.type}" />
+            </p:column>
+
+            <p:column headerText="Color">
+                <h:outputText value="#{car.color}" />
+            </p:column>
+
+            <p:column headerText="LicensePlateNumber">
+                <h:outputText value="#{car.licensePlateNumber}" />
+            </p:column>
+        </p:dataTable>
+    </h:body>
+
+</html>
+
