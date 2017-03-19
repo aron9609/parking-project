@@ -3,6 +3,7 @@ package hu.aronszabo.ulyssys.parking.web.menagedbeans.view;
 import hu.aronszabo.ulyssys.parking.service.api.service.CarService;
 import hu.aronszabo.ulyssys.parking.service.api.vo.CarVO;
 import java.util.Collection;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -21,6 +22,11 @@ public class CarRegistryView {
     private CarService carService;
 
     private CarVO selected;
+
+    @PostConstruct
+    public void init() {
+        selected = null;
+    }
 
     public Collection<CarVO> getCars() {
         return carService.getAll();
