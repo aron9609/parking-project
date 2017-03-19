@@ -1,4 +1,4 @@
-package hu.aronszabo.ulyssys.parking.web.menagedbeans;
+package hu.aronszabo.ulyssys.parking.web.menagedbeans.view;
 
 import hu.aronszabo.ulyssys.parking.service.api.service.CarService;
 import hu.aronszabo.ulyssys.parking.service.api.vo.CarVO;
