@@ -16,7 +16,8 @@ public class CarRepository {
         DATA = new LinkedList<>();
         DATA.add(new CarDTO("KVE-228", "Suzuki", "Swift", "white"));
         DATA.add(new CarDTO("KVE-229", "Opel", "Astra", "red"));
-        DATA.add(new CarDTO("KVE-229", "Kia", "Rio", "black"));
+        DATA.add(new CarDTO("KVE-230", "Kia", "Rio", "black"));
+        DATA.add(new CarDTO("KVE-231", "Ford", "Fiesta", "black"));
         log.debug(DATA.toString());
     }
 

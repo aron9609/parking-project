@@ -2,6 +2,7 @@ package hu.aronszabo.ulyssys.parking.web.menagedbeans.view;
 
 import hu.aronszabo.ulyssys.parking.service.api.service.CarService;
 import hu.aronszabo.ulyssys.parking.service.api.vo.CarVO;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -22,6 +23,9 @@ public class ParkingPlacesView {
 
     private CarVO car;
     private String licensePlateNumber;
+
+    private Date begin;
+    private Date end;
 
     @PostConstruct
     public void init() {

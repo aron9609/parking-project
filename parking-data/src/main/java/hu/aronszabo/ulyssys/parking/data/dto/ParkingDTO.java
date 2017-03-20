@@ -1,6 +1,6 @@
 package hu.aronszabo.ulyssys.parking.data.dto;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +13,6 @@ public class ParkingDTO {
     private Long id;
     private Long parkingPlaceId;
     private String licensePlateNumber;
-    private LocalDateTime beginOfParking;
-    private LocalDateTime endOfParking;
+    private Date beginOfParking;
+    private Date endOfParking;
 }

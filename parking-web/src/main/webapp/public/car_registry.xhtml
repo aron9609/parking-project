@@ -27,9 +27,20 @@
                     <h:outputText value="#{car.color}" />
                 </p:column>
 
-                <p:column headerText="LicensePlateNumber">
+                <p:column headerText="License Plate Number">
                     <h:outputText value="#{car.licensePlateNumber}" />
                 </p:column>
+
+                <p:column headerText="Parking">
+                    <ui:fragment rendered="#{car.parking}">
+                        <h:outputText value="yes" />
+                    </ui:fragment>
+
+                    <ui:fragment rendered="#{!car.parking}">
+                        <h:outputText value="no" />
+                    </ui:fragment>
+                </p:column>
+
                 <f:facet name="footer">
                     <p:commandButton update="car_table" value="Delete" action="#{carRegistryView.deleteSelected()}" />
                     <p:button id="park_button" outcome="parking_places" value="Park"  >

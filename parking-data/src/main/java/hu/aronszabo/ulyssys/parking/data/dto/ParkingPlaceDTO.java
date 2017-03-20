@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class ParkingPlaceDTO {
 
     private Long id;
-    private Boolean isFree;
+    private String name;
 }

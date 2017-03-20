@@ -11,4 +11,5 @@ public class CarVO {
     private String brand;
     private String type;
     private String color;
+    private Boolean parking;
 }

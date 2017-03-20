@@ -17,29 +17,57 @@
     <ui:define name="custom-body">
 
 
+        <p:panel id="details" header="Car Details">
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:outputText value="Brand:" />
+                <h:outputText value="#{parkingPlaceView.carData.brand}" />
 
-        <h:panelGrid columns="2" cellpadding="5">
-            <h:outputText value="Brand" />
-            <h:outputText value="#{parkingPlaceView.carData.brand}" />
+                <h:outputText value="Type:" />
+                <h:outputText value="#{parkingPlaceView.carData.type}" />
 
-            <h:outputText value="Type" />
-            <h:outputText value="#{parkingPlaceView.carData.type}" />
+                <h:outputText value="Color:" />
+                <h:outputText value="#{parkingPlaceView.carData.color}" />
 
-            <h:outputText value="Color" />
-            <h:outputText value="#{parkingPlaceView.carData.color}" />
-
-            <h:outputText value="License Plate Number" />
-            <h:outputText value="#{parkingPlaceView.carData.licensePlateNumber}" />
-        </h:panelGrid>
-
+                <h:outputText value="License Plate Number:" />
+                <h:outputText value="#{parkingPlaceView.carData.licensePlateNumber}" />
+            </h:panelGrid>
+        </p:panel>
         <p:tabView>
-            <p:tab title="">
+            <p:tab title="parking place 1">
+                <p:panelGrid id="display" columns="2" >
+
+                    <p:outputLabel for="tab1_begin" value="Begin:" />
+                    <p:calendar id="tab1_begin" value="#{parkingPlaceView.begin}" pattern="MM/dd/yyyy HH:mm:ss" />
+
+                    <p:outputLabel for="tab1_end" value="End:" />
+                    <p:calendar id="tab1_end" value="#{parkingPlaceView.end}" pattern="MM/dd/yyyy HH:mm:ss" />
+
+                </p:panelGrid>
+            </p:tab>
+            <p:tab title="parking place 2">
+
+                <p:panelGrid id="display" columns="2" >
+
+                    <p:outputLabel for="tab2_begin" value="Begin:" />
+                    <p:calendar id="tab2_begin" value="#{parkingPlaceView.begin}" pattern="MM/dd/yyyy HH:mm:ss" />
+
+                    <p:outputLabel for="tab2_end" value="End:" />
+                    <p:calendar id="tab2_end" value="#{parkingPlaceView.end}" pattern="MM/dd/yyyy HH:mm:ss" />
+
+                </p:panelGrid>
 
             </p:tab>
-            <p:tab title="">
+            <p:tab title="parking place 3">
 
-            </p:tab>
-            <p:tab title="">
+                <p:panelGrid id="display" columns="2" >
+
+                    <p:outputLabel for="tab3_begin" value="Begin:" />
+                    <p:calendar id="tab3_begin" value="#{parkingPlaceView.begin}" pattern="MM/dd/yyyy HH:mm:ss" />
+
+                    <p:outputLabel for="tab3_end" value="End:" />
+                    <p:calendar id="tab3_end" value="#{parkingPlaceView.end}" pattern="MM/dd/yyyy HH:mm:ss" />
+
+                </p:panelGrid>
 
             </p:tab>
         </p:tabView>

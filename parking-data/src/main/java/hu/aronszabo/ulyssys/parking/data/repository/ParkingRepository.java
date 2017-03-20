@@ -1,6 +1,7 @@
 package hu.aronszabo.ulyssys.parking.data.repository;
 
 import hu.aronszabo.ulyssys.parking.data.dto.ParkingDTO;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,9 @@ public class ParkingRepository {
 
     static {
         DATA = new LinkedList<>();
+        DATA.add(new ParkingDTO(1L, 2L, "KVE-229", new Date(117, 1, 3, 12, 19, 0), new Date(117, 1, 3, 13, 31, 0)));
+        DATA.add(new ParkingDTO(2L, 1L, "KVE-231", new Date(117, 1, 3, 14, 28, 0), new Date(117, 1, 3, 19, 15, 0)));
+        DATA.add(new ParkingDTO(3L, 3L, "KVE-228", new Date(117, 1, 3, 9, 1, 0), new Date(117, 1, 3, 11, 55, 0)));
     }
 
     public ParkingDTO getByLicensePlateNumber(final String licensePlateNumber) {

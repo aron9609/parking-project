@@ -1,6 +1,6 @@
 package hu.aronszabo.ulyssys.parking.service.api.vo;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +11,6 @@ public class ParkingVO {
     private Long id;
     private Long parkingPlaceId;
     private String licensePlateNumber;
-    private LocalDateTime beginOfParking;
-    private LocalDateTime endOfParking;
+    private Date beginOfParking;
+    private Date endOfParking;
 }

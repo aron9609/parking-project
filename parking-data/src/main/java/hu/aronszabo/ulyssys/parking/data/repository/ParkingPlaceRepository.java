@@ -12,6 +12,9 @@ public class ParkingPlaceRepository {
 
     static {
         DATA = new LinkedList<>();
+        DATA.add(new ParkingPlaceDTO(1L, "Parking Place 1"));
+        DATA.add(new ParkingPlaceDTO(2L, "Parking Place 3"));
+        DATA.add(new ParkingPlaceDTO(3L, "Parking Place 3"));
     }
 
     public ParkingPlaceDTO getById(final Long id) {
