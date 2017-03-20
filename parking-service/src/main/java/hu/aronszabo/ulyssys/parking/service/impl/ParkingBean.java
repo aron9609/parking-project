@@ -4,6 +4,7 @@ import hu.aronszabo.ulyssys.parking.data.repository.ParkingRepository;
 import hu.aronszabo.ulyssys.parking.service.api.service.ParkingService;
 import hu.aronszabo.ulyssys.parking.service.api.vo.ParkingVO;
 import hu.aronszabo.ulyssys.parking.service.mappers.ParkingMapper;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -15,7 +16,7 @@ public class ParkingBean implements ParkingService {
     private static final ParkingRepository REPOSITORY = new ParkingRepository();
 
     @Override
-    public ParkingVO getByLicensePlateNumber(final String licensePlateNumber) {
+    public List<ParkingVO> getByLicensePlateNumber(final String licensePlateNumber) {
         return ParkingMapper.toVO(REPOSITORY.getByLicensePlateNumber(licensePlateNumber));
     }
 
@@ -25,7 +26,7 @@ public class ParkingBean implements ParkingService {
     }
 
     @Override
-    public ParkingVO getByParkingPlaceId(final Long parkingPlaceId) {
+    public List<ParkingVO> getByParkingPlaceId(final Long parkingPlaceId) {
         return ParkingMapper.toVO(REPOSITORY.getByParkingPlaceId(parkingPlaceId));
     }
 

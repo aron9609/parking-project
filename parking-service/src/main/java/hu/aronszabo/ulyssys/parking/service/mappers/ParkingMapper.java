@@ -1,7 +1,13 @@
 package hu.aronszabo.ulyssys.parking.service.mappers;
 
+import hu.aronszabo.ulyssys.parking.data.dto.CarDTO;
 import hu.aronszabo.ulyssys.parking.data.dto.ParkingDTO;
+import hu.aronszabo.ulyssys.parking.service.api.vo.CarVO;
 import hu.aronszabo.ulyssys.parking.service.api.vo.ParkingVO;
+import static hu.aronszabo.ulyssys.parking.service.mappers.CarMapper.toDTO;
+import static hu.aronszabo.ulyssys.parking.service.mappers.CarMapper.toVO;
+import java.util.ArrayList;
+import java.util.List;
 import org.dozer.DozerBeanMapper;
 
 public final class ParkingMapper {
@@ -23,5 +29,21 @@ public final class ParkingMapper {
             return null;
         }
         return mapper.map(vo, ParkingDTO.class);
+    }
+
+    public static List<ParkingVO> toVO(final List<ParkingDTO> dtos) {
+        List<ParkingVO> tmp = new ArrayList<>();
+        for (ParkingDTO dto : dtos) {
+            tmp.add(toVO(dto));
+        }
+        return tmp;
+    }
+
+    public static List<ParkingDTO> toDTO(final List<ParkingVO> vos) {
+        List<ParkingDTO> tmp = new ArrayList<>();
+        for (ParkingVO vo : vos) {
+            tmp.add(toDTO(vo));
+        }
+        return tmp;
     }
 }

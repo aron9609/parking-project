@@ -13,8 +13,12 @@ public class ParkingPlaceRepository {
     static {
         DATA = new LinkedList<>();
         DATA.add(new ParkingPlaceDTO(1L, "Parking Place 1"));
-        DATA.add(new ParkingPlaceDTO(2L, "Parking Place 3"));
+        DATA.add(new ParkingPlaceDTO(2L, "Parking Place 2"));
         DATA.add(new ParkingPlaceDTO(3L, "Parking Place 3"));
+    }
+
+    public List<ParkingPlaceDTO> getAll() {
+        return DATA;
     }
 
     public ParkingPlaceDTO getById(final Long id) {
@@ -29,6 +33,7 @@ public class ParkingPlaceRepository {
     }
 
     public void save(final ParkingPlaceDTO parkingPlaceDTO) {
+        parkingPlaceDTO.setId(new Long(DATA.size()));
         DATA.add(parkingPlaceDTO);
     }
 

@@ -1,6 +1,7 @@
 package hu.aronszabo.ulyssys.parking.data.repository;
 
 import hu.aronszabo.ulyssys.parking.data.dto.ParkingDTO;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,12 +19,11 @@ public class ParkingRepository {
         DATA.add(new ParkingDTO(3L, 3L, "KVE-228", new Date(117, 1, 3, 9, 1, 0), new Date(117, 1, 3, 11, 55, 0)));
     }
 
-    public ParkingDTO getByLicensePlateNumber(final String licensePlateNumber) {
-        ParkingDTO result = null;
+    public List<ParkingDTO> getByLicensePlateNumber(final String licensePlateNumber) {
+        List<ParkingDTO> result = new ArrayList<>();
         for (ParkingDTO tmp : DATA) {
             if (tmp.getLicensePlateNumber().equals(licensePlateNumber)) {
-                result = tmp;
-                break;
+                result.add(tmp);
             }
         }
         return result;
@@ -40,18 +40,18 @@ public class ParkingRepository {
         return result;
     }
 
-    public ParkingDTO getByParkingPlaceId(final Long parkingPlaceId) {
-        ParkingDTO result = null;
+    public List<ParkingDTO> getByParkingPlaceId(final Long parkingPlaceId) {
+        List<ParkingDTO> result = new ArrayList<>();
         for (ParkingDTO tmp : DATA) {
             if (tmp.getParkingPlaceId().equals(parkingPlaceId)) {
-                result = tmp;
-                break;
+                result.add(tmp);
             }
         }
         return result;
     }
 
     public void save(final ParkingDTO parkingDTO) {
+        parkingDTO.setId(new Long(DATA.size()));
         DATA.add(parkingDTO);
     }
 

@@ -13,8 +13,8 @@
         <h:form id="car_table">
             <p:dataTable id="cars" var="car" value="#{carRegistryView.cars}" rowKey="#{car.licensePlateNumber}"
                          selection="#{carRegistryView.selected}" selectionMode="single">
-                <p:ajax event="rowSelect" update="park_button" />
-                <p:ajax event="rowUnselect" update="park_button" />
+                <p:ajax event="rowSelect" update="cars" />
+                <p:ajax event="rowUnselect" update="cars" />
                 <p:column headerText="Brand">
                     <h:outputText value="#{car.brand}" />
                 </p:column>
@@ -41,9 +41,9 @@
                     </ui:fragment>
                 </p:column>
 
-                <f:facet name="footer">
-                    <p:commandButton update="car_table" value="Delete" action="#{carRegistryView.deleteSelected()}" />
-                    <p:button id="park_button" outcome="parking_places" value="Park"  >
+                <f:facet id="footer" name="footer">
+                    <p:commandButton id="delete_button" rendered="#{!carRegistryView.selected.parking}" update="car_table" value="Delete" action="#{carRegistryView.deleteSelected()}" />
+                    <p:button id="park_button" rendered="#{!carRegistryView.selected.parking}" outcome="parking_places" value="Park"  >
                         <f:param id="requestParam" name="licensePlateNumber" value="#{carRegistryView.selected.licensePlateNumber}"></f:param>
                     </p:button>
                 </f:facet>

@@ -1,14 +1,15 @@
 package hu.aronszabo.ulyssys.parking.service.api.service;
 
 import hu.aronszabo.ulyssys.parking.service.api.vo.ParkingVO;
+import java.util.List;
 
 public interface ParkingService {
 
-    ParkingVO getByLicensePlateNumber(String licensePlateNumber);
+    List<ParkingVO> getByLicensePlateNumber(String licensePlateNumber);
 
     ParkingVO getById(Long id);
 
-    ParkingVO getByParkingPlaceId(Long parkingPlaceId);
+    List<ParkingVO> getByParkingPlaceId(Long parkingPlaceId);
 
     void save(ParkingVO parkingVO);
 

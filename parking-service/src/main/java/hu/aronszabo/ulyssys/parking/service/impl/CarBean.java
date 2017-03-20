@@ -39,7 +39,7 @@ public class CarBean implements CarService {
     public List<CarVO> getAll() {
         List<CarVO> cars = CarMapper.toVO(REPOSITORY.getAll());
         for (CarVO car : cars) {
-            if (parkingService.getByLicensePlateNumber(car.getLicensePlateNumber()) == null) {
+            if (parkingService.getByLicensePlateNumber(car.getLicensePlateNumber()).isEmpty()) {
                 car.setParking(false);
             } else {
                 car.setParking(true);
