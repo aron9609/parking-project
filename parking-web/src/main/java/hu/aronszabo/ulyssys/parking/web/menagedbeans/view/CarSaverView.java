@@ -34,6 +34,7 @@ public class CarSaverView {
             carService.save(car);
             car = new CarVO();
             RequestContext.getCurrentInstance().update("new_car_modal");
+            RequestContext.getCurrentInstance().update("car_table");
         } else {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Invalid data", "This car is already in the database");
             RequestContext.getCurrentInstance().showMessageInDialog(message);

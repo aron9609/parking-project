@@ -13,8 +13,8 @@
         <h:form id="car_table">
             <p:dataTable id="cars" var="car" value="#{carRegistryView.cars}" rowKey="#{car.licensePlateNumber}"
                          selection="#{carRegistryView.selected}" selectionMode="single">
-                <p:ajax event="rowSelect" update="cars" />
-                <p:ajax event="rowUnselect" update="cars" />
+                <p:ajax event="rowSelect" update="footer_form" />
+                <p:ajax event="rowUnselect" update="footer_form" />
                 <p:column headerText="Brand">
                     <h:outputText value="#{car.brand}" />
                 </p:column>
@@ -41,38 +41,41 @@
                     </ui:fragment>
                 </p:column>
 
-                <f:facet id="footer" name="footer">
-                    <p:commandButton id="delete_button" rendered="#{!carRegistryView.selected.parking}" update="car_table" value="Delete" action="#{carRegistryView.deleteSelected()}" />
-                    <p:button id="park_button" rendered="#{!carRegistryView.selected.parking}" outcome="parking_places" value="Park"  >
-                        <f:param id="requestParam" name="licensePlateNumber" value="#{carRegistryView.selected.licensePlateNumber}"></f:param>
-                    </p:button>
-                </f:facet>
             </p:dataTable>
 
         </h:form>
+        <h:form id="footer_form">
+            <p:commandButton value="Add new Car" type="button" onclick="PF('modal').show();" />
+            <p:commandButton id="delete_button" rendered="#{!carRegistryView.selected.parking and carRegistryView.selected != null}" update="car_table" value="Delete"
+                             action="#{carRegistryView.deleteSelected()}" />
+            <p:button id="park_button" rendered="#{!carRegistryView.selected.parking and carRegistryView.selected != null}" outcome="parking_places" value="Park"  >
+                <f:param id="requestParam" name="licensePlateNumber" value="#{carRegistryView.selected.licensePlateNumber}"></f:param>
+            </p:button>
+        </h:form>
 
-        <p:commandButton value="Add new Car" type="button" onclick="PF('modal').show();" />
+
 
         <p:dialog id="new_car_modal" header="New Car" widgetVar="modal" modal="true" height="600" width="600" resizable="false">
-            <h:form>
+            <h:form id="new_car_form">
                 <h:panelGrid columns="3" cellpadding="5">
                     <p:outputLabel for="brand" value="Brand:" />
-                    <p:inputText id="brand" value="#{carSaverView.car.brand}" required="true"/>
+                    <p:inputText id="brand" value="#{carSaverView.car.brand}" required="true" requiredMessage="requires"/>
                     <p:message for="brand" />
 
                     <p:outputLabel for="type" value="Type:" />
-                    <p:inputText id="type" value="#{carSaverView.car.type}" required="true" />
+                    <p:inputText id="type" value="#{carSaverView.car.type}" required="true" requiredMessage="requires"/>
+                    <p:message for="type" />
 
                     <p:outputLabel for="color" value="Color:" />
-                    <p:inputText id="color" value="#{carSaverView.car.color}" required="true"/>
+                    <p:inputText id="color" value="#{carSaverView.car.color}" required="true" requiredMessage="requires"/>
                     <p:message for="color" />
 
                     <p:outputLabel for="licensePlateNumber" value="License Plate Number:" />
-                    <p:inputText id="licensePlateNumber" value="#{carSaverView.car.licensePlateNumber}" required="true"/>
+                    <p:inputText id="licensePlateNumber" value="#{carSaverView.car.licensePlateNumber}" required="true" requiredMessage="requires"/>
                     <p:message for="licensePlateNumber" />
 
                 </h:panelGrid>
-                <p:commandButton value="Save" update="car_table" type="submit" actionListener="#{carSaverView.save}" ajax="true" />
+                <p:commandButton value="Save" update="new_car_form" type="submit" actionListener="#{carSaverView.save}" ajax="true"/>
             </h:form>
         </p:dialog>
 

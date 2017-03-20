@@ -16,8 +16,11 @@
     </ui:define>
     <ui:define name="custom-body">
 
+        <p:button outcome="car_registry" value="Back" icon="ui-icon-carat-1-w"/>
+
 
         <p:panel id="details" header="Car Details">
+
             <h:panelGrid columns="2" cellpadding="5">
                 <h:outputText value="Brand:" />
                 <h:outputText value="#{parkingPlaceView.carData.brand}" />
@@ -31,9 +34,6 @@
                 <h:outputText value="License Plate Number:" />
                 <h:outputText value="#{parkingPlaceView.carData.licensePlateNumber}" />
 
-                <h:outputText value="asd" />
-                <h:outputText value="#{parkingPlaceView.place.name}" />
-
             </h:panelGrid>
         </p:panel>
         <p:tabView id="places" value="#{parkingPlaceView.parkingData}" var="parking">
@@ -41,10 +41,10 @@
                 <p:panelGrid id="display" columns="2" >
                     <h:form>
                         <p:outputLabel for="tab1_begin" value="Begin:" />
-                        <p:calendar id="tab1_begin" value="#{parkingPlaceView.begin}" pattern="MM/dd/yyyy HH:mm:ss" />
+                        <p:calendar id="tab1_begin" value="#{parkingPlaceView.begin}" pattern="MM/dd/yyyy HH:mm:ss" mask="true"/>
 
                         <p:outputLabel for="tab1_end" value="End:" />
-                        <p:calendar id="tab1_end" value="#{parkingPlaceView.end}" pattern="MM/dd/yyyy HH:mm:ss" />
+                        <p:calendar id="tab1_end" value="#{parkingPlaceView.end}" pattern="MM/dd/yyyy HH:mm:ss" mask="true"/>
 
 
 

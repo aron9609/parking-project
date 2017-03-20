@@ -10,11 +10,13 @@ import java.util.Collection;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.TabChangeEvent;
 
 @Slf4j
@@ -61,11 +63,17 @@ public class ParkingPlacesView {
     }
 
     public void save(Long id) {
-        ParkingVO tmp = new ParkingVO();
-        tmp.setBeginOfParking(begin);
-        tmp.setEndOfParking(end);
-        tmp.setLicensePlateNumber(car.getLicensePlateNumber());
-        tmp.setParkingPlaceId(id);
-        parkingService.save(tmp);
+        if (!car.getParking()) {
+            ParkingVO tmp = new ParkingVO();
+            tmp.setBeginOfParking(begin);
+            tmp.setEndOfParking(end);
+            tmp.setLicensePlateNumber(car.getLicensePlateNumber());
+            tmp.setParkingPlaceId(id);
+            parkingService.save(tmp);
+            car.setParking(true);
+        } else {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR", "This car is already in one of the parking places");
+            RequestContext.getCurrentInstance().showMessageInDialog(message);
+        }
     }
 }

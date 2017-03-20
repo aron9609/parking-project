@@ -22,7 +22,16 @@ public class CarBean implements CarService {
 
     @Override
     public CarVO getByLicensePlateNumber(final String licensePlateNumber) {
-        return CarMapper.toVO(REPOSITORY.getByLicensePlateNumber(licensePlateNumber));
+        CarVO tmp = null;
+        tmp = CarMapper.toVO(REPOSITORY.getByLicensePlateNumber(licensePlateNumber));
+        if (tmp != null) {
+            if (parkingService.getByLicensePlateNumber(licensePlateNumber).isEmpty()) {
+                tmp.setParking(false);
+            } else {
+                tmp.setParking(true);
+            }
+        }
+        return tmp;
     }
 
     @Override
