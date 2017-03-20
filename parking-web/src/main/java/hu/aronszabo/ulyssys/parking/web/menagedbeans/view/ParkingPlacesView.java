@@ -2,7 +2,6 @@ package hu.aronszabo.ulyssys.parking.web.menagedbeans.view;
 
 import hu.aronszabo.ulyssys.parking.service.api.service.CarService;
 import hu.aronszabo.ulyssys.parking.service.api.vo.CarVO;
-import java.util.Collection;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -15,28 +14,25 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 @NoArgsConstructor
 @ViewScoped
-@ManagedBean(name = "carRegistryView")
-public class CarRegistryView {
+@ManagedBean(name = "parkingPlaceView")
+public class ParkingPlacesView {
 
     @EJB
     private CarService carService;
 
-    private CarVO selected;
+    private CarVO car;
+    private String licensePlateNumber;
 
     @PostConstruct
     public void init() {
-        selected = null;
+        car = null;
     }
 
-    public Collection<CarVO> getCars() {
-        return carService.getAll();
-    }
-
-    public void deleteSelected() {
-        if (selected != null) {
-            carService.remove(selected.getLicensePlateNumber());
+    public CarVO getCarData() {
+        if (car == null) {
+            log.info(licensePlateNumber);
+            return carService.getByLicensePlateNumber(licensePlateNumber);
         }
-        selected = null;
+        return car;
     }
-
 }

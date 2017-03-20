@@ -9,20 +9,37 @@
                 template="/templates/masterLayout.xhtml">
 
     <ui:define name="custom-head"/>
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="licensePlateNumber" value="#{parkingPlaceView.licensePlateNumber}" />
+        </f:metadata>
+    </ui:define>
     <ui:define name="custom-body">
 
+
+
         <h:panelGrid columns="2" cellpadding="5">
-            <h:outputText value="" />
+            <h:outputText value="Brand" />
+            <h:outputText value="#{parkingPlaceView.carData.brand}" />
+
+            <h:outputText value="Type" />
+            <h:outputText value="#{parkingPlaceView.carData.type}" />
+
+            <h:outputText value="Color" />
+            <h:outputText value="#{parkingPlaceView.carData.color}" />
+
+            <h:outputText value="License Plate Number" />
+            <h:outputText value="#{parkingPlaceView.carData.licensePlateNumber}" />
         </h:panelGrid>
 
         <p:tabView>
-            <p:tab title="Godfather Part I">
+            <p:tab title="">
 
             </p:tab>
-            <p:tab title="Godfather Part II">
+            <p:tab title="">
 
             </p:tab>
-            <p:tab title="Godfather Part III">
+            <p:tab title="">
 
             </p:tab>
         </p:tabView>

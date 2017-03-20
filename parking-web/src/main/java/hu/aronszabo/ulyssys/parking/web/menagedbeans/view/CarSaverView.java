@@ -20,7 +20,7 @@ import org.primefaces.context.RequestContext;
 public class CarSaverView {
 
     @EJB
-    CarService carService;
+    private CarService carService;
 
     private CarVO car;
 
