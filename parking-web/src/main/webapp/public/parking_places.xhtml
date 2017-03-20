@@ -8,13 +8,21 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/masterLayout.xhtml">
 
-    <ui:define name="custom-head"/>
-    <ui:define name="metadata">
+    <ui:define name="custom_page_title">
+        Car registry page
+    </ui:define>
+
+    <ui:define name="custom_navbar_title">
+        Car registry page
+    </ui:define>
+
+    <ui:define name="custom_head"/>
+    <ui:define name="custom_metadata">
         <f:metadata>
             <f:viewParam name="licensePlateNumber" value="#{parkingPlaceView.licensePlateNumber}" />
         </f:metadata>
     </ui:define>
-    <ui:define name="custom-body">
+    <ui:define name="custom_body">
 
         <p:button outcome="car_registry" value="Back" icon="ui-icon-carat-1-w"/>
 
@@ -54,7 +62,7 @@
 
                 </p:panelGrid>
 
-                <p:dataTable id="cars" var="car" value="#{parking.cars}">
+                <p:dataTable id="car_table" var="car" value="#{parking.cars}">
                     <p:column headerText="Parking Cars">
                         <h:outputText value="#{car.licensePlateNumber}" />
                     </p:column>

@@ -10,7 +10,7 @@
 
     <f:view>
 
-        <ui:insert name="metadata"/>
+        <ui:insert name="custom_metadata"/>
 
         <h:head>
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,15 +18,29 @@
             <meta name="viewport"
                   content="width=device-width, initial-scale=1.0, user-scalable=no" />
 
+            <title><ui:insert name="custom_page_title"></ui:insert></title>
 
-            <title><ui:insert name="Car Registry"></ui:insert></title>
-            <ui:insert name="custom-head" />
+            <h:outputStylesheet library="css" name="bootstrap.css" />
+            <h:outputStylesheet library="css" name="layout.css" />
+            <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+
+            <ui:insert name="custom_head" />
 
         </h:head>
 
         <h:body>
-            <ui:insert name="custom-body" />
 
+            <div class="header">
+                <div class="title">
+                    <ui:insert name="custom_navbar_title" />
+                </div>
+            </div>
+
+            <div class="custom_body_style">
+                <ui:insert name="custom_body" />
+            </div>
+
+            <ui:insert name="custom_scripts" />
         </h:body>
 
     </f:view>

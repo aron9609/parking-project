@@ -8,13 +8,30 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/masterLayout.xhtml">
 
-    <ui:define name="custom-head"/>
-    <ui:define name="custom-body">
-        <h:form id="car_table">
-            <p:dataTable id="cars" var="car" value="#{carRegistryView.cars}" rowKey="#{car.licensePlateNumber}"
+    <ui:define name="custom_head">
+        <h:outputStylesheet library="css" name="car_registry.css" />
+    </ui:define>
+
+    <ui:define name="custom_page_title">
+        Car registry page
+    </ui:define>
+
+    <ui:define name="custom_navbar_title">
+        Car registry page
+    </ui:define>
+
+    <ui:define name="custom_body">
+
+        <p:commandButton value="Add new Car" type="button" onclick="PF('new_car_modal').show();" />
+
+        <h:form id="car_form">
+
+            <p:dataTable id="car_table" var="car" value="#{carRegistryView.cars}" rowKey="#{car.licensePlateNumber}"
                          selection="#{carRegistryView.selected}" selectionMode="single">
+
                 <p:ajax event="rowSelect" update="footer_form" />
                 <p:ajax event="rowUnselect" update="footer_form" />
+
                 <p:column headerText="Brand">
                     <h:outputText value="#{car.brand}" />
                 </p:column>
@@ -32,6 +49,7 @@
                 </p:column>
 
                 <p:column headerText="Parking">
+
                     <ui:fragment rendered="#{car.parking}">
                         <h:outputText value="yes" />
                     </ui:fragment>
@@ -39,25 +57,37 @@
                     <ui:fragment rendered="#{!car.parking}">
                         <h:outputText value="no" />
                     </ui:fragment>
+
                 </p:column>
 
             </p:dataTable>
 
         </h:form>
+
         <h:form id="footer_form">
-            <p:commandButton value="Add new Car" type="button" onclick="PF('modal').show();" />
-            <p:commandButton id="delete_button" rendered="#{!carRegistryView.selected.parking and carRegistryView.selected != null}" update="car_table" value="Delete"
+
+            <p:commandButton id="delete_button"
+                             rendered="#{!carRegistryView.selected.parking and carRegistryView.selected != null}"
+                             update="car_table" value="Delete"
                              action="#{carRegistryView.deleteSelected()}" />
-            <p:button id="park_button" rendered="#{!carRegistryView.selected.parking and carRegistryView.selected != null}" outcome="parking_places" value="Park"  >
-                <f:param id="requestParam" name="licensePlateNumber" value="#{carRegistryView.selected.licensePlateNumber}"></f:param>
+
+            <p:button id="park_button"
+                      rendered="#{!carRegistryView.selected.parking and carRegistryView.selected != null}"
+                      outcome="parking_places" value="Park" >
+                <f:param id="requestParam" name="licensePlateNumber" value="#{carRegistryView.selected.licensePlateNumber}"/>
             </p:button>
+
         </h:form>
 
 
 
-        <p:dialog id="new_car_modal" header="New Car" widgetVar="modal" modal="true" height="600" width="600" resizable="false">
+        <p:dialog id="new_car_modal" header="New Car" widgetVar="modal"
+                  modal="true" height="600" width="600" resizable="false">
+
             <h:form id="new_car_form">
+
                 <h:panelGrid columns="3" cellpadding="5">
+
                     <p:outputLabel for="brand" value="Brand:" />
                     <p:inputText id="brand" value="#{carSaverView.car.brand}" required="true" requiredMessage="requires"/>
                     <p:message for="brand" />
@@ -75,8 +105,11 @@
                     <p:message for="licensePlateNumber" />
 
                 </h:panelGrid>
+
                 <p:commandButton value="Save" update="new_car_form" type="submit" actionListener="#{carSaverView.save}" ajax="true"/>
+
             </h:form>
+
         </p:dialog>
 
     </ui:define>

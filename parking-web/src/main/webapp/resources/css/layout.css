@@ -1,0 +1,27 @@
+.header{
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    background-color: #424242;
+    margin-bottom: 30px;
+    padding: 5px;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.title{
+    font-family: sans-serif;
+    font-size: 28px;
+    color: #F5F5F5;
+}
+
+.custom_body_style{
+    padding: 70px 30px 30px 30px;
+}
+
+#body{
+    background-color: #F5F5F5;
+}
+
