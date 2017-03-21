@@ -8,67 +8,97 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/masterLayout.xhtml">
 
+    <ui:define name="custom_head">
+        <h:outputStylesheet library="css" name="parking_places.css" />
+    </ui:define>
+
     <ui:define name="custom_page_title">
-        Car registry page
+        Parking page
     </ui:define>
 
     <ui:define name="custom_navbar_title">
-        Car registry page
+        Parking page
     </ui:define>
 
-    <ui:define name="custom_head"/>
+
     <ui:define name="custom_metadata">
         <f:metadata>
-            <f:viewParam name="licensePlateNumber" value="#{parkingPlaceView.licensePlateNumber}" />
+            <f:viewParam name="licensePlateNumber"
+                         value="#{parkingPlaceView.licensePlateNumber}" />
         </f:metadata>
     </ui:define>
+
     <ui:define name="custom_body">
 
-        <p:button outcome="car_registry" value="Back" icon="ui-icon-carat-1-w"/>
+        <p:button outcome="car_registry"
+                  value="Back" icon="ui-icon-carat-1-w"
+                  styleClass="top_button"/>
 
+        <p:panel id="details"
+                 header="Car Details"
+                 styleClass="details_panel">
 
-        <p:panel id="details" header="Car Details">
-
-            <h:panelGrid columns="2" cellpadding="5">
-                <h:outputText value="Brand:" />
+            <h:panelGrid columns="2" cellpadding="5" >
+                <h:outputText value="Brand:" styleClass="titles"/>
                 <h:outputText value="#{parkingPlaceView.carData.brand}" />
 
-                <h:outputText value="Type:" />
+                <h:outputText value="Type:" styleClass="titles"/>
                 <h:outputText value="#{parkingPlaceView.carData.type}" />
 
-                <h:outputText value="Color:" />
+                <h:outputText value="Color:" styleClass="titles"/>
                 <h:outputText value="#{parkingPlaceView.carData.color}" />
 
-                <h:outputText value="License Plate Number:" />
+                <h:outputText value="License Plate Number:" styleClass="titles"/>
                 <h:outputText value="#{parkingPlaceView.carData.licensePlateNumber}" />
 
             </h:panelGrid>
         </p:panel>
-        <p:tabView id="places" value="#{parkingPlaceView.parkingData}" var="parking">
+
+        <p:tabView id="places"
+                   value="#{parkingPlaceView.parkingData}"
+                   var="parking"
+                   styleClass="parking_panel">
+
             <p:tab title="#{parking.name}">
-                <p:panelGrid id="display" columns="2" >
-                    <h:form>
-                        <p:outputLabel for="tab1_begin" value="Begin:" />
-                        <p:calendar id="tab1_begin" value="#{parkingPlaceView.begin}" pattern="MM/dd/yyyy HH:mm:ss" mask="true"/>
 
-                        <p:outputLabel for="tab1_end" value="End:" />
-                        <p:calendar id="tab1_end" value="#{parkingPlaceView.end}" pattern="MM/dd/yyyy HH:mm:ss" mask="true"/>
+                <h:panelGrid columns="2" cellpadding="5">
+
+                    <p:panel header="New Parking" styleClass="parking_panel">
+
+                        <h:form>
+
+                            <h:panelGrid id="display" columns="2" cellpadding="5" >
+
+                                <p:outputLabel for="tab1_begin" value="Begin:" />
+                                <p:calendar id="tab1_begin" value="#{parkingPlaceView.begin}" pattern="MM/dd/yyyy HH:mm:ss" mask="true"/>
+
+                                <p:outputLabel for="tab1_end" value="End:" />
+                                <p:calendar id="tab1_end" value="#{parkingPlaceView.end}" pattern="MM/dd/yyyy HH:mm:ss" mask="true"/>
+
+                                <p:outputLabel for="save_btn" value="Save" />
+                                <p:commandButton id="save_btn" value="Save" update="places" action="#{parkingPlaceView.save(parking.id)}" />
 
 
+                            </h:panelGrid>
 
-                        <p:outputLabel for="save_btn" value="Save" />
-                        <p:commandButton id="save_btn" value="Save" update="places" action="#{parkingPlaceView.save(parking.id)}" />
-                    </h:form>
+                        </h:form>
 
-                </p:panelGrid>
+                    </p:panel>
 
-                <p:dataTable id="car_table" var="car" value="#{parking.cars}">
-                    <p:column headerText="Parking Cars">
-                        <h:outputText value="#{car.licensePlateNumber}" />
-                    </p:column>
-                </p:dataTable>
+                    <p:dataTable id="car_table" var="car" value="#{parking.cars}">
+
+                        <p:column headerText="Parking Cars" styleClass="align_center">
+                            <h:outputText value="#{car.licensePlateNumber}" />
+                        </p:column>
+
+                    </p:dataTable>
+
+                </h:panelGrid>
+
             </p:tab>
+
         </p:tabView>
+
     </ui:define>
 
 </ui:composition>

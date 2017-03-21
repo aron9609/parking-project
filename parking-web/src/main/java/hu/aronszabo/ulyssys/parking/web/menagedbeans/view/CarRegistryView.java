@@ -39,4 +39,8 @@ public class CarRegistryView {
         selected = null;
     }
 
+    public Boolean isDeletable() {
+        return selected != null && !selected.getParking();
+    }
+
 }

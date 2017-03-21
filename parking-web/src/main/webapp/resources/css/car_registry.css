@@ -1,2 +1,16 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
 
+.top_button{
+    margin-bottom: 10px;
+}
+
+.bottom_button{
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 10px;
+}
+
+.align_center{
+    text-align: center;
+}
 

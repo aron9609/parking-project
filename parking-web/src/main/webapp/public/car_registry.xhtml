@@ -22,12 +22,19 @@
 
     <ui:define name="custom_body">
 
-        <p:commandButton value="Add new Car" type="button" onclick="PF('new_car_modal').show();" />
+        <p:commandButton value="Add new Car"
+                         type="button"
+                         onclick="PF('modal').show();"
+                         styleClass="top_button"
+                         icon="ui-icon-plus"/>
 
         <h:form id="car_form">
 
-            <p:dataTable id="car_table" var="car" value="#{carRegistryView.cars}" rowKey="#{car.licensePlateNumber}"
-                         selection="#{carRegistryView.selected}" selectionMode="single">
+            <p:dataTable id="car_table" var="car"
+                         value="#{carRegistryView.cars}"
+                         rowKey="#{car.licensePlateNumber}"
+                         selection="#{carRegistryView.selected}"
+                         selectionMode="single">
 
                 <p:ajax event="rowSelect" update="footer_form" />
                 <p:ajax event="rowUnselect" update="footer_form" />
@@ -48,14 +55,14 @@
                     <h:outputText value="#{car.licensePlateNumber}" />
                 </p:column>
 
-                <p:column headerText="Parking">
+                <p:column headerText="Parking" styleClass="align_center">
 
                     <ui:fragment rendered="#{car.parking}">
-                        <h:outputText value="yes" />
+                        <span class="glyphicon glyphicon-ok"></span>
                     </ui:fragment>
 
                     <ui:fragment rendered="#{!car.parking}">
-                        <h:outputText value="no" />
+                        <span class="glyphicon glyphicon-remove"></span>
                     </ui:fragment>
 
                 </p:column>
@@ -67,13 +74,19 @@
         <h:form id="footer_form">
 
             <p:commandButton id="delete_button"
-                             rendered="#{!carRegistryView.selected.parking and carRegistryView.selected != null}"
-                             update="car_table" value="Delete"
-                             action="#{carRegistryView.deleteSelected()}" />
+                             rendered="#{carRegistryView.isDeletable()}"
+                             update="car_form"
+                             value="Delete"
+                             action="#{carRegistryView.deleteSelected()}"
+                             icon="ui-icon-closethick"
+                             styleClass="bottom_button"/>
 
             <p:button id="park_button"
-                      rendered="#{!carRegistryView.selected.parking and carRegistryView.selected != null}"
-                      outcome="parking_places" value="Park" >
+                      rendered="#{carRegistryView.isDeletable()}"
+                      outcome="parking_places"
+                      value="Park"
+                      styleClass="bottom_button"
+                      icon="ui-icon-transferthick-e-w">
                 <f:param id="requestParam" name="licensePlateNumber" value="#{carRegistryView.selected.licensePlateNumber}"/>
             </p:button>
 
@@ -82,7 +95,7 @@
 
 
         <p:dialog id="new_car_modal" header="New Car" widgetVar="modal"
-                  modal="true" height="600" width="600" resizable="false">
+                  modal="true" height="250" width="500" resizable="false">
 
             <h:form id="new_car_form">
 
