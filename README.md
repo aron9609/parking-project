@@ -10,3 +10,5 @@ Interview project - Semper Idem Kft.
  - NetBeans IDE
  - Code quality tools
  
+ root url: .../parking/
+ 
