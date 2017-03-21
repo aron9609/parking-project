@@ -9,6 +9,9 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
+/**
+ * @see ParkingService
+ */
 @Stateless(mappedName = "ParkingService")
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class ParkingBean implements ParkingService {
@@ -16,13 +19,8 @@ public class ParkingBean implements ParkingService {
     private static final ParkingRepository REPOSITORY = new ParkingRepository();
 
     @Override
-    public List<ParkingVO> getByLicensePlateNumber(final String licensePlateNumber) {
+    public ParkingVO getByLicensePlateNumber(final String licensePlateNumber) {
         return ParkingMapper.toVO(REPOSITORY.getByLicensePlateNumber(licensePlateNumber));
-    }
-
-    @Override
-    public ParkingVO getById(final Long id) {
-        return ParkingMapper.toVO(REPOSITORY.getById(id));
     }
 
     @Override

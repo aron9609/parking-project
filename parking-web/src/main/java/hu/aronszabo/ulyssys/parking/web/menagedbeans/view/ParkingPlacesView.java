@@ -1,5 +1,6 @@
 package hu.aronszabo.ulyssys.parking.web.menagedbeans.view;
 
+import hu.aronszabo.ulyssys.parking.service.api.exception.NotFoundException;
 import hu.aronszabo.ulyssys.parking.service.api.service.CarService;
 import hu.aronszabo.ulyssys.parking.service.api.service.ParkingPlaceService;
 import hu.aronszabo.ulyssys.parking.service.api.service.ParkingService;
@@ -17,7 +18,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.primefaces.context.RequestContext;
-import org.primefaces.event.TabChangeEvent;
 
 @Slf4j
 @Data
@@ -36,7 +36,6 @@ public class ParkingPlacesView {
     private CarService carService;
 
     private CarVO car;
-    private ParkingPlaceVO place;
     private String licensePlateNumber;
 
     private Date begin;
@@ -45,11 +44,17 @@ public class ParkingPlacesView {
     @PostConstruct
     public void init() {
         car = null;
+        begin = new Date();
+        end = new Date();
     }
 
     public CarVO getCarData() {
         if (car == null) {
-            car = carService.getByLicensePlateNumber(licensePlateNumber);
+            try {
+                car = carService.getByLicensePlateNumber(licensePlateNumber);
+            } catch (NotFoundException ex) {
+                log.error("car not found");
+            }
         }
         return car;
     }
@@ -58,11 +63,7 @@ public class ParkingPlacesView {
         return parkingPlaceService.getAll();
     }
 
-    public void onTabChange(TabChangeEvent event) {
-        place = (ParkingPlaceVO) event.getData();
-    }
-
-    public void save(Long id) {
+    public void save(final Long id) {
         if (!car.getParking()) {
             ParkingVO tmp = new ParkingVO();
             tmp.setBeginOfParking(begin);

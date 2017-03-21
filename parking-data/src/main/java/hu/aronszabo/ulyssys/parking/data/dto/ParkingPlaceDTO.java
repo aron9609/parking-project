@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This class implement the records of the ParkingPlace mocked database table
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

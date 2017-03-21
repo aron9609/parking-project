@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * This class implement the records of the Parking mocked database table
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

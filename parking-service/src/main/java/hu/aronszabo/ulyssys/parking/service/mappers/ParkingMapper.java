@@ -1,11 +1,7 @@
 package hu.aronszabo.ulyssys.parking.service.mappers;
 
-import hu.aronszabo.ulyssys.parking.data.dto.CarDTO;
 import hu.aronszabo.ulyssys.parking.data.dto.ParkingDTO;
-import hu.aronszabo.ulyssys.parking.service.api.vo.CarVO;
 import hu.aronszabo.ulyssys.parking.service.api.vo.ParkingVO;
-import static hu.aronszabo.ulyssys.parking.service.mappers.CarMapper.toDTO;
-import static hu.aronszabo.ulyssys.parking.service.mappers.CarMapper.toVO;
 import java.util.ArrayList;
 import java.util.List;
 import org.dozer.DozerBeanMapper;

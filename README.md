@@ -8,4 +8,5 @@ Interview project - Semper Idem Kft.
  - Glassfish 4.1.1
  - maven
  - NetBeans IDE
+ - Code quality tools
  

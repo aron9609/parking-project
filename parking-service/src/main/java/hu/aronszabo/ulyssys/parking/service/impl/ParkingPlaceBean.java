@@ -1,13 +1,13 @@
 package hu.aronszabo.ulyssys.parking.service.impl;
 
 import hu.aronszabo.ulyssys.parking.data.repository.ParkingPlaceRepository;
+import hu.aronszabo.ulyssys.parking.service.api.exception.NotFoundException;
 import hu.aronszabo.ulyssys.parking.service.api.service.CarService;
 import hu.aronszabo.ulyssys.parking.service.api.service.ParkingPlaceService;
 import hu.aronszabo.ulyssys.parking.service.api.service.ParkingService;
 import hu.aronszabo.ulyssys.parking.service.api.vo.CarVO;
 import hu.aronszabo.ulyssys.parking.service.api.vo.ParkingPlaceVO;
 import hu.aronszabo.ulyssys.parking.service.api.vo.ParkingVO;
-import hu.aronszabo.ulyssys.parking.service.mappers.CarMapper;
 import hu.aronszabo.ulyssys.parking.service.mappers.ParkingPlaceMapper;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,12 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @see ParkingPlaceService
+ */
+@Slf4j
 @Stateless(mappedName = "ParkingPlaceService")
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class ParkingPlaceBean implements ParkingPlaceService {
@@ -34,7 +39,11 @@ public class ParkingPlaceBean implements ParkingPlaceService {
             List<ParkingVO> parkings = parkingService.getByParkingPlaceId(tmp.getId());
             List<CarVO> tmpCars = new ArrayList<>();
             for (ParkingVO vo : parkings) {
-                tmpCars.add(carService.getByLicensePlateNumber(vo.getLicensePlateNumber()));
+                try {
+                    tmpCars.add(carService.getByLicensePlateNumber(vo.getLicensePlateNumber()));
+                } catch (NotFoundException ex) {
+                    log.error("car not found");
+                }
             }
             tmp.setCars(tmpCars);
         }
@@ -46,20 +55,14 @@ public class ParkingPlaceBean implements ParkingPlaceService {
         ParkingPlaceVO result = ParkingPlaceMapper.toVO(REPOSITORY.getById(id));
         List<CarVO> cars = new ArrayList<>();
         for (ParkingVO vo : parkingService.getByParkingPlaceId(id)) {
-            cars.add(carService.getByLicensePlateNumber(vo.getLicensePlateNumber()));
+            try {
+                cars.add(carService.getByLicensePlateNumber(vo.getLicensePlateNumber()));
+            } catch (NotFoundException ex) {
+                log.error("car not found");
+            }
         }
         result.setCars(cars);
         return result;
-    }
-
-    @Override
-    public void save(final ParkingPlaceVO parkingPlaceVO) {
-        REPOSITORY.save(ParkingPlaceMapper.toDTO(parkingPlaceVO));
-    }
-
-    @Override
-    public void remove(final Long id) {
-        REPOSITORY.remove(id);
     }
 
 }

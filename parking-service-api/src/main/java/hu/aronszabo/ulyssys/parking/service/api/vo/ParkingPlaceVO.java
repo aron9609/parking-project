@@ -10,5 +10,5 @@ public class ParkingPlaceVO {
 
     private Long id;
     private String name;
-    List<CarVO> cars;
+    private List<CarVO> cars;
 }

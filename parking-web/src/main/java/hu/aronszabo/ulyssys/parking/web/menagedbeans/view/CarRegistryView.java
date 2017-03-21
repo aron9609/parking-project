@@ -1,8 +1,11 @@
 package hu.aronszabo.ulyssys.parking.web.menagedbeans.view;
 
+import hu.aronszabo.ulyssys.parking.service.api.exception.DeleteParkingCarException;
 import hu.aronszabo.ulyssys.parking.service.api.service.CarService;
 import hu.aronszabo.ulyssys.parking.service.api.vo.CarVO;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -34,7 +37,11 @@ public class CarRegistryView {
 
     public void deleteSelected() {
         if (selected != null) {
-            carService.remove(selected.getLicensePlateNumber());
+            try {
+                carService.remove(selected.getLicensePlateNumber());
+            } catch (DeleteParkingCarException ex) {
+                Logger.getLogger(CarRegistryView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         selected = null;
     }

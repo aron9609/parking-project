@@ -1,5 +1,6 @@
 package hu.aronszabo.ulyssys.parking.web.menagedbeans.view;
 
+import hu.aronszabo.ulyssys.parking.service.api.exception.CarAlreadyExistsException;
 import hu.aronszabo.ulyssys.parking.service.api.service.CarService;
 import hu.aronszabo.ulyssys.parking.service.api.vo.CarVO;
 import javax.annotation.PostConstruct;
@@ -30,14 +31,15 @@ public class CarSaverView {
     }
 
     public void save() {
-        if (carService.getByLicensePlateNumber(car.getLicensePlateNumber()) == null) {
+        try {
             carService.save(car);
             car = new CarVO();
             RequestContext.getCurrentInstance().update("new_car_modal");
             RequestContext.getCurrentInstance().update("car_form");
-        } else {
+        } catch (CarAlreadyExistsException ex) {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Invalid data", "This car is already in the database");
             RequestContext.getCurrentInstance().showMessageInDialog(message);
         }
+
     }
 }
