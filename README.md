@@ -1,7 +1,7 @@
 # Parking Manager Web Application
 Interview project - Semper Idem Kft.
 
-###Technology Stack:
+## Technology Stack:
  - Java EE
  - Primefaces
  - JSF
